@@ -73,3 +73,8 @@ psicograficos$membresia <-as.factor(clusters)
 glimpse(psicograficos)
 ```
 
+Por último, un sencillo gráfico como el que usaríamos para analizar cada uno de los items por cluster. 
+```{r}
+ggplot(psicograficos, aes(x=membresia, y=Q2)) + geom_boxplot()
+```
+
