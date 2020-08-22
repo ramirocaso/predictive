@@ -1,0 +1,10 @@
+---
+title: "Index"
+author: "Ramiro Casó"
+date: "8/22/2020"
+output: html_document
+---
+
+Bienvenidos a mis tutoriales en R. Si llegaste 
+
+[Tutorial1](/home.html)
