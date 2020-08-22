@@ -1,0 +1,55 @@
+---
+title: "k-means"
+author: "Ramiro Casó"
+date: "8/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Carga de datos
+
+Este es un tutorial para explicarles cómo hacer agrupamientos utilizando el K-means. 
+
+Lo primero que debemos hacer es cargar las librerías que usaremos en el tutorial. En este caso, serán Dplyr, readxl y ggplot2. 
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(dplyr)
+library(readxl)
+library(ggplot2)
+```
+
+Seguidamente cargamos el set de datos. Lo haremos utilizando el data set de Ford Ka. Noten que cargué la hoja que ya tenía en mi working directory. En el comando de read_excel, específiqué la hoja que quería y, además, le quité las primeras 5 líneas, que no contienen información. 
+
+```{r message=FALSE, warning=FALSE}
+psicograficos <- read_excel("DataSets/Ford_Ka_Students.xls", 
+    sheet = "Psychographic Data", skip = 5)
+head(psicograficos)
+```
+
+
+### Normalización
+
+Lo que sigue es normalizar los datos. Hay que dejar en la matriz de datos solo las columnas que usaremos para agrupar, de modo que hay que sacar la primera columna. 
+```{r}
+norm_psico <- scale(psicograficos[,-1])
+```
+
+
+### Clustering
+
+Seguidamente, empezamos a probar distintos clusters. Empecemos con K2
+```{r}
+k2=kmeans(norm_psico,2)
+```
+Veamos las membresías
+```{r}
+k2$cluster
+```
+Veamos los centroides
+```{r}
+k2$centers
+```
+

@@ -5,7 +5,6 @@ date: "8/22/2020"
 output: html_document
 ---
 
-   
 
 Bienvenidos a mis tutoriales en R del curso de Predictive Analytic uno. Para consultar cada tutorial, haz click en el link correspondiente. Cualquier duda, escríbeme un [correo](mailto:ramiro.caso@incae.edu) 
 
