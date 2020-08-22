@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Carga de datos
+### Intro
 
 Este es un tutorial para explicarles cómo hacer agrupamientos utilizando el K-means. 
 
@@ -51,5 +51,25 @@ k2$cluster
 Veamos los centroides
 ```{r}
 k2$centers
+```
+Y finalmente, veamos el tamaño de cada uno 
+```{r}
+k2$size
+```
+
+Ahora que ya vimos como se hace, paso a paso, probemos con K=4, pero hagámoslo todo en un mismo chunk de código. 
+
+```{r}
+k4=kmeans(norm_psico,4)
+k4$cluster
+k4$centers
+k4$size
+```
+
+Como vamos a quedarnos con 4 clusters, lo que corresponde ahora es agregar la columna de membresías al dataset origial, para después proceder con los análisis descriptivos correspondientes. Noten que se cambió el nivel de medida de la variable membresía para hacerla un factor. 
+```{r}
+clusters <-k4$cluster
+psicograficos$membresia <-as.factor(clusters)
+glimpse(psicograficos)
 ```
 
