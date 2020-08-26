@@ -66,7 +66,7 @@ k4$centers
 k4$size
 ```
 
-Como vamos a quedarnos con 4 clusters, lo que corresponde ahora es agregar la columna de membresías al dataset origial, para después proceder con los análisis descriptivos correspondientes. Noten que se cambió el nivel de medida de la variable membresía para hacerla un factor. 
+Como vamos a quedarnos con 4 clusters, lo que corresponde ahora es agregar la columna de membresías al dataset origial, para después proceder con los análisis descriptivos correspondientes. Noten que se cambió el nivel de medida de la variable membresía para hacerla un factor, que R reconoce como una variable categórica.  
 ```{r}
 clusters <-k4$cluster
 psicograficos$membresia <-as.factor(clusters)
