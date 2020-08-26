@@ -21,7 +21,7 @@ library(tidyr)      # Pipe y manipulación de datos.
 library(tidyverse)  # Manipulación de datos. 
 library(cluster)    # Clusters
 library(factoextra) # Visualización 
-library(dendextend) # Comparación de dengramas (esto es muy cool)
+library(dendextend) # Comparación de dengramas (esto es muy cool pero no lo he hecho aún)
 ```
 
 Seguidamente cargamos el set de datos. Lo haremos utilizando el data set de Ford Ka. Noten que cargué la hoja que ya tenía en mi working directory. En el comando de read_excel, específiqué la hoja que quería y, además, le quité las primeras 5 líneas, que no contienen información. 
