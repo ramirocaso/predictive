@@ -9,22 +9,68 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+### Intro
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+En este tutorial haremos reglas de asociación, usando el mismo data set que usamos en clase: tienda ropa. Noten que en este caso usamos el operador read.csv (antes usamos read_csv de la librería readr) y le pedimos que la columna #7 la use de nombre de los rows. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+tienda_ropa <- read.csv("DataSets/tienda_ropa.csv", row.names=7)
+View(tienda_ropa)
 ```
 
-## Including Plots
+Seguidamente, invocamos la librería que usaremos para las reglas de asociación, llamada *arules*
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+library(arules)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Preprocesamiento de datos y descriptivos
+
+Convirtamos la data.frame tienda_ropa en un itemMatrix. Esta es la estructura con la que las funciones abajo pueden hallar itemsets y reglas. Imprimamosla. Hallemos estadisticos de frecuencia para los distintos items.
+
+```{r}
+i = as(as.matrix(tienda_ropa),"itemMatrix")
+i
+
+```
+
+Hallemos estadisticos de frecuencia para los distintos items.
+```{r}
+itemFrequency(i)
+```
+
+### Hallando item sets
+
+Ahora podemos hallar items set con un support mínimo. Recuerden que el support es la frecuencia relativa de cada item o set de items. Inspeccionaremos el set de items frecuentes también
+
+```{r}
+fsets <- apriori(i,parameter=list(supp=0.2,target="frequent itemsets"))
+inspect(fsets)
+```
+
+### Hallando reglas. 
+
+Ahora toca conseguir las reglas. 
+
+```{r}
+rules <- apriori(i,parameter=list(supp=0.2,conf=0.5,target="rules"))
+
+```
+```{r}
+inspect(rules)
+```
+
+Ahora podemos hacer una inspección de las reglas en función de lo que hay en el precedente o premisa. Para ello, usaremos el siguiente código. En este caso, buscaremos reglas que tengan "shoes" o "zapatos" en la premisa. 
+```{r}
+rulesJeansPre <- subset(rules,subset= lhs %in% "shoes") #noten que "lhs" refiere a "left hand side" o lado izquierdo de la regla
+inspect(rulesJeansPre)
+
+```
+
+Podemos hacer algo similar, pero flitrando por lo que hay en la consecuencia (que es lo que eventualmente se recomendaría)
+```{r}
+rulesJeansCon <- subset(rules,subset= rhs %in% "shoes")
+inspect(rulesJeansCon)
+
+```
+
