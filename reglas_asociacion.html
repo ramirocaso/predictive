@@ -343,6 +343,46 @@ i</code></pre>
 ## [25]  4   
 ## [26]  4   
 ## [27]  4</code></pre>
+<p>Ahora podemos hacer una inspección de las reglas en función de lo que hay en el precedente o premisa. Para ello, usaremos el siguiente código. En este caso, buscaremos reglas que tengan “shoes” o “zapatos” en la premisa.</p>
+<pre class="r"><code>rulesJeansPre &lt;- subset(rules,subset= lhs %in% &quot;shoes&quot;) #noten que &quot;lhs&quot; refiere a &quot;left hand side&quot; o lado izquierdo de la regla
+inspect(rulesJeansPre)</code></pre>
+<pre><code>##      lhs                      rhs      support confidence coverage lift    
+## [1]  {shoes}               =&gt; {jeans}  0.35    0.7000000  0.50     1.000000
+## [2]  {shoes}               =&gt; {tshirt} 0.50    1.0000000  0.50     1.428571
+## [3]  {shoes,shorts}        =&gt; {jeans}  0.20    1.0000000  0.20     1.428571
+## [4]  {jeans,shoes}         =&gt; {shorts} 0.20    0.5714286  0.35     2.285714
+## [5]  {shoes,shorts}        =&gt; {tshirt} 0.20    1.0000000  0.20     1.428571
+## [6]  {jeans,shoes}         =&gt; {tshirt} 0.35    1.0000000  0.35     1.428571
+## [7]  {shoes,tshirt}        =&gt; {jeans}  0.35    0.7000000  0.50     1.000000
+## [8]  {jeans,shoes,shorts}  =&gt; {tshirt} 0.20    1.0000000  0.20     1.428571
+## [9]  {shoes,shorts,tshirt} =&gt; {jeans}  0.20    1.0000000  0.20     1.428571
+## [10] {jeans,shoes,tshirt}  =&gt; {shorts} 0.20    0.5714286  0.35     2.285714
+##      count
+## [1]   7   
+## [2]  10   
+## [3]   4   
+## [4]   4   
+## [5]   4   
+## [6]   7   
+## [7]   7   
+## [8]   4   
+## [9]   4   
+## [10]  4</code></pre>
+<p>Podemos hacer algo similar, pero flitrando por lo que hay en la consecuencia (que es lo que eventualmente se recomendaría)</p>
+<pre class="r"><code>rulesJeansCon &lt;- subset(rules,subset= rhs %in% &quot;shoes&quot;)
+inspect(rulesJeansCon)</code></pre>
+<pre><code>##     lhs                      rhs     support confidence coverage lift     count
+## [1] {}                    =&gt; {shoes} 0.50    0.5000000  1.00     1.000000 10   
+## [2] {shorts}              =&gt; {shoes} 0.20    0.8000000  0.25     1.600000  4   
+## [3] {jeans}               =&gt; {shoes} 0.35    0.5000000  0.70     1.000000  7   
+## [4] {tshirt}              =&gt; {shoes} 0.50    0.7142857  0.70     1.428571 10   
+## [5] {jeans,shorts}        =&gt; {shoes} 0.20    0.8000000  0.25     1.600000  4   
+## [6] {shorts,tshirt}       =&gt; {shoes} 0.20    1.0000000  0.20     2.000000  4   
+## [7] {jeans,tshirt}        =&gt; {shoes} 0.35    0.7777778  0.45     1.555556  7   
+## [8] {jeans,shorts,tshirt} =&gt; {shoes} 0.20    1.0000000  0.20     2.000000  4</code></pre>
+<p>Finalmente, podemos escribir las reglas en un CSV.</p>
+<pre class="r"><code>write(rulesJeansCon,file=&quot;reglasJeansCon.csv&quot;,sep=&quot;;&quot;)
+write(rulesJeansPre,file=&quot;reglasJeansPre.csv&quot;,sep=&quot;;&quot;)</code></pre>
 </div>
 
 

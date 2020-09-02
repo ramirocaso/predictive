@@ -1,0 +1,9 @@
+"rules";"support";"confidence";"coverage";"lift";"count"
+"1";"{} => {shoes}";0.5;0.5;1;1;10
+"5";"{shorts} => {shoes}";0.2;0.8;0.25;1.6;4
+"9";"{jeans} => {shoes}";0.35;0.5;0.7;1;7
+"11";"{tshirt} => {shoes}";0.5;0.714285714285714;0.7;1.42857142857143;10
+"15";"{jeans,shorts} => {shoes}";0.2;0.8;0.25;1.6;4
+"18";"{shorts,tshirt} => {shoes}";0.2;1;0.2;2;4
+"23";"{jeans,tshirt} => {shoes}";0.35;0.777777777777778;0.45;1.55555555555556;7
+"26";"{jeans,shorts,tshirt} => {shoes}";0.2;1;0.2;2;4

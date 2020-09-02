@@ -74,3 +74,9 @@ inspect(rulesJeansCon)
 
 ```
 
+Finalmente, podemos escribir las reglas en un CSV. 
+```{r}
+write(rulesJeansCon,file="reglasJeansCon.csv",sep=";")
+write(rulesJeansPre,file="reglasJeansPre.csv",sep=";")
+```
+
