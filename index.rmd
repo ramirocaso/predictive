@@ -15,4 +15,5 @@ Bienvenidos a mis tutoriales en R del curso de Predictive Analytic uno. Para con
 
 
 [Tutorial K-means](./kmeans.hmtl)
+
 [Tutorial Cluster jerárquico](./jerarquico.hmtl)
